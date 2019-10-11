@@ -656,7 +656,95 @@ public class iSoccer {
     }
 
     public static void busca() {
-        System.out.println("Busca");
+        clear();
+        System.out.println("Selecione:");
+        System.out.println("\t1 - para buscar funcionário");
+        System.out.println("\t2 - para buscar sócio");
+        System.out.println("\t3 - para sair");
+
+        int op = input.nextInt();
+        String aux = input.nextLine();
+        clear();
+
+        switch (op) {
+            case 1:
+                clear();
+                System.out.println("Selecione:");
+                System.out.println("\t1 - para buscar treinador/jogador");
+                System.out.println("\t2 - para buscar funcionário gerais");
+
+                int mod = input.nextInt();
+                aux = input.nextLine();
+                clear();
+
+                if (mod == 1) {
+                    System.out.println("Insira o CPF que deseja buscar: ");
+                    aux = input.nextLine();
+                    for (int i = 0; i < func; i++) {
+                        if (funcionarios[i][2].equals(aux)) {
+                            if (funcionarios[i][0].equals("Jogador")) {
+                                System.out.println("\tNome: " + funcionarios[i][1]);
+                                System.out.println("\tCPF: " + funcionarios[i][2]);
+                                System.out.println("\tPosição: " + funcionarios[i][3]);
+                                System.out.println("\tNúmero da camisa: " + funcionarios[i][4]);
+                                System.out.println("\tEmail: " + funcionarios[i][5]);
+                                System.out.println("\tSalário: R$ " + funcionarios[i][6]);
+                                System.out.println("\tNúmero de telefone: " + funcionarios[i][7]);
+                                System.out.println("\tCondição: " + funcionarios[i][8] + "\n");
+                                break;
+                            } else {
+                                System.out.println("Treinador:");
+                                System.out.println("\tNome: " + funcionarios[i][1]);
+                                System.out.println("\tCPF: " + funcionarios[i][2]);
+                                System.out.println("\tEmail: " + funcionarios[i][3]);
+                                System.out.println("\tSalário: R$ " + funcionarios[i][4]);
+                                System.out.println("\tNúmero de telefone: " + funcionarios[i][5]);
+                                break;
+                            }
+                        }
+                    }
+                } else {
+                    System.out.println("Insira o CPF que deseja buscar: ");
+                    aux = input.nextLine();
+                    for (int i = 0; i < func; i++) {
+                        if (!funcionarios[i][0].equals("Tecnico") && !funcionarios[i][0].equals("Jogador")) {
+                            if (funcionarios[i][2].equals(aux)) {
+                                System.out.println("\tNome: " + funcionarios[i][1]);
+                                System.out.println("\tCPF: " + funcionarios[i][2]);
+                                System.out.println("\tCargo: " + funcionarios[i][0]);
+                                if (funcionarios[i][0].equals("Medico")) {
+                                    System.out.println("\tCRM: " + funcionarios[i][6]);
+                                } else if (funcionarios[i][0].equals("Motorista")) {
+                                    System.out.println("\tCNH: " + funcionarios[i][6]);
+                                }
+                                System.out.println("\tEmail: " + funcionarios[i][3]);
+                                System.out.println("\tSalário: R$ " + funcionarios[i][4]);
+                                System.out.println("\tNúmero de telefone: " + funcionarios[i][5] + "\n");
+                                break;
+                            }
+                        }
+                    }
+                }
+                break;
+            case 2:
+                System.out.println("Insira o CPF que deseja buscar: ");
+                aux = input.nextLine();
+
+                for (int i = 0; i < soc; i++) {
+                    if (socios[i][2].equals(aux)) {
+                        System.out.println("\tTipo de plano: " + socios[i][0]);
+                        System.out.println("\tNome: " + socios[i][1]);
+                        System.out.println("\tCPF: " + socios[i][2]);
+                        System.out.println("\tEmail: " + socios[i][3]);
+                        System.out.println("\tValor da contribuição: R$ " + socios[i][4]);
+                        System.out.println("\tNúmero de telefone: " + socios[i][5]);
+                        System.out.println("\tSituação: " + socios[i][6] + "");   
+                    }
+                }
+            default:
+                break;
+        }
+
     }
 
     public static void relatorios() {
@@ -664,8 +752,7 @@ public class iSoccer {
         System.out.println("Selecione:");
         System.out.println("\t1 - para relatório de funcionários");
         System.out.println("\t2 - para relatório de sócios");
-        System.out.println("\t3 - para relatório de recursos físicos");
-        System.out.println("\t4 - para sair");
+        System.out.println("\t3 - para sair");
 
         int op = input.nextInt();
         String aux = input.nextLine();
@@ -676,7 +763,7 @@ public class iSoccer {
                 clear();
                 System.out.println("Selecione:");
                 System.out.println("\t1 - para relatório do time");
-                System.out.println("\t2 - para relatório de serviços gerais:");
+                System.out.println("\t2 - para relatório de serviços gerais");
 
                 int mod = input.nextInt();
                 aux = input.nextLine();
@@ -720,8 +807,7 @@ public class iSoccer {
                             }
                             System.out.println("\tEmail: " + funcionarios[i][3]);
                             System.out.println("\tSalário: R$ " + funcionarios[i][4]);
-                            System.out.println("\tNúmero de telefone: " + funcionarios[i][5]);
-                            break;
+                            System.out.println("\tNúmero de telefone: " + funcionarios[i][5] + "\n");
                         }
                     }
                 }
@@ -743,7 +829,7 @@ public class iSoccer {
                 aux = input.nextLine();
                 if (aux.equals("s") || aux.equals("S")) {
                     for (int i = 0; i < soc; i++) {
-                        System.out.println("\tTipo de plano: " + socios[i][0];
+                        System.out.println("\tTipo de plano: " + socios[i][0]);
                         System.out.println("\tNome: " + socios[i][1]);
                         System.out.println("\tCPF: " + socios[i][2]);
                         System.out.println("\tEmail: " + socios[i][3]);
@@ -752,8 +838,6 @@ public class iSoccer {
                         System.out.println("\tSituação: " + socios[i][6] + "");
                     }
                 }
-                break;
-            case 3:
                 break;
             default:
                 break;
