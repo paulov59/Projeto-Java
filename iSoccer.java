@@ -21,6 +21,7 @@ public class iSoccer {
     public static void main(String[] args) {
         clear();
         System.out.println("Bem vindo ao iSoccer!\n");
+        System.out.println("Pressione < CTRL + C > para sair ou insira suas credenciais...");
         System.out.print("Nome de usuario: ");
         String usuario = input.nextLine();
         System.out.print("Senha: ");
@@ -29,6 +30,7 @@ public class iSoccer {
         while (!usuario.equals("admin") || !senha.equals("admin")) {
             clear();
             System.out.println("Bem vindo ao iSoccer!\n");
+            System.out.println("Pressione <CTRL + C> para sair ou insira suas credenciais");
             System.out.println("Usuário ou senha invalidos!");
             System.out.print("Nome de usuario: ");
             usuario = input.nextLine();
@@ -378,11 +380,11 @@ public class iSoccer {
                 cpf = input.nextLine();
                 for (i = 0; i < func; i++) {
                     if (socios[i][2].equals(cpf)) {
-                        socf = 1;
+                        flag = 1;
                         break;
                     }
                 }
-                if (socf == 1) {
+                if (flag == 1) {
                     System.out.println("Nome: " + socios[i][1]);
                     mod = 0;
                     while (mod != 6) {
@@ -437,7 +439,7 @@ public class iSoccer {
                             System.out.println("Opção inválida!");
                         }
                     }
-                    socf = 0;
+                    flag = 0;
                 } else {
                     System.out.println("Sócio não encontrado!\nPressioner ENTER para prosseguir.");
                     aux = input.nextLine();
