@@ -40,11 +40,11 @@ public class iSoccer {
         int op = 1;
         do {
             clear();
-            if (op > 6 || op < 1) {
+            if (op > 7 || op < 1) {
                 System.out.println("Opção inválida!");
             }
             op = menu();
-        } while (op != 6);
+        } while (op != 7);
 
         clear();
         System.out.println("Obrigado por usar o iSoccer!");
@@ -57,8 +57,9 @@ public class iSoccer {
         System.out.println("\t2 - Adicionar sócio");
         System.out.println("\t3 - Modificar cadastro");
         System.out.println("\t4 - Gerenciar recursos físicos");
-        System.out.println("\t5 - Relatórios");
-        System.out.println("\t6 - Sair");
+        System.out.println("\t5 - Buscar");
+        System.out.println("\t6 - Relatórios");
+        System.out.println("\t7 - Sair");
 
         int op = input.nextInt();
 
@@ -76,6 +77,9 @@ public class iSoccer {
                 gerenciarRecursos();
                 break;
             case 5:
+                busca();
+                break;
+            case 6:
                 relatorios();
                 break;
             default:
@@ -421,8 +425,15 @@ public class iSoccer {
                             System.out.print("Insira o número de telefone: ");
                             socios[i][5] = input.nextLine();
                         } else if (mod == 5) {
-                            System.out.print("Insira a condição: ");
-                            socios[i][6] = input.nextLine();
+                            System.out.println("Selecione:");
+                            System.out.print("\t1 - para adimplente");
+                            System.out.println("\t2 - para inadimplente");
+                            int esc = input.nextInt();
+                            if (esc == 1) {
+                                socios[i][6] = "adimplente";
+                            } else {
+                                socios[i][6] = "inadimplente";
+                            }
                         } else if (mod > 6 || mod < 1) {
                             System.out.println("Opção inválida!");
                         }
@@ -644,12 +655,16 @@ public class iSoccer {
 
     }
 
+    public static void busca() {
+        System.out.println("Busca");
+    }
+
     public static void relatorios() {
         clear();
         System.out.println("Selecione:");
         System.out.println("\t1 - para relatório de funcionários");
-        System.out.println("\t2 - para relatório de recursos físicos");
-        System.out.println("\t3 - para relatório de sócios");
+        System.out.println("\t2 - para relatório de sócios");
+        System.out.println("\t3 - para relatório de recursos físicos");
         System.out.println("\t4 - para sair");
 
         int op = input.nextInt();
@@ -710,6 +725,35 @@ public class iSoccer {
                         }
                     }
                 }
+                break;
+            case 2:
+                clear();
+                int ad = 0, inad = 0;
+                System.out.println("Quantidade de sócios: " + soc);
+                for (int i = 0; i < soc; i++) {
+                    if (socios[i][6].equals("adimplente")) {
+                        ad++;
+                    } else {
+                        inad++;
+                    }
+                }
+                System.out.println("Adimplentes: " + ad);
+                System.out.println("Inadimplente: " + inad);
+                System.out.print("\nDeseja uma lista de sócios? (s/n) ");
+                aux = input.nextLine();
+                if (aux.equals("s") || aux.equals("S")) {
+                    for (int i = 0; i < soc; i++) {
+                        System.out.println("\tTipo de plano: " + socios[i][0];
+                        System.out.println("\tNome: " + socios[i][1]);
+                        System.out.println("\tCPF: " + socios[i][2]);
+                        System.out.println("\tEmail: " + socios[i][3]);
+                        System.out.println("\tValor da contribuição: R$ " + socios[i][4]);
+                        System.out.println("\tNúmero de telefone: " + socios[i][5]);
+                        System.out.println("\tSituação: " + socios[i][6] + "");
+                    }
+                }
+                break;
+            case 3:
                 break;
             default:
                 break;
