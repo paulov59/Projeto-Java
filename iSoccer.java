@@ -13,9 +13,8 @@ public class iSoccer {
     private static String recursos[][] = new String[3][6];
 
     private static int func = 0;
-    private static int jog = 0;
     private static int soc = 0;
-    private static int socf = 0;
+    private static int flag = 0;
 
     private static Scanner input = new Scanner(System.in);
 
@@ -323,12 +322,12 @@ public class iSoccer {
                 for (i = 0; i < func; i++) {
                     if (funcionarios[i][0].equals("jogador")) {
                         if (funcionarios[i][2].equals(cpf)) {
-                            jog = 1;
+                            flag = 1;
                             break;
                         }
                     }
                 }
-                if (jog == 1) {
+                if (flag == 1) {
                     System.out.println("Nome: " + funcionarios[i][1]);
                     System.out.println("Posição: " + funcionarios[i][3]);
                     mod = 0;
@@ -368,7 +367,7 @@ public class iSoccer {
                             System.out.println("Opção inválida!");
                         }
                     }
-                    jog = 0;
+                    flag = 0;
                 } else {
                     System.out.println("Jogador não encontrado!\nPressioner ENTER para prosseguir.");
                     aux = input.nextLine();
@@ -482,11 +481,11 @@ public class iSoccer {
                     System.out.print("Ônibus " + recursos[0][3] + " encontrado. Deseja mais informações sobre o modelo? (s/n) ");
                     aux = input.nextLine();
                     if (aux.equals("s") || aux.equals("S")) {
-                        System.out.println("Marca: " + recursos[0][1]);
-                        System.out.println("Modelo: " + recursos[0][2]);
-                        System.out.println("Placa: " + recursos[0][3]);
-                        System.out.println("Quantidade de assentos: " + recursos[0][4]);
-                        System.out.println("Situação: " + recursos[0][5]);
+                        System.out.println("\tMarca: " + recursos[0][1]);
+                        System.out.println("\tModelo: " + recursos[0][2]);
+                        System.out.println("\tPlaca: " + recursos[0][3]);
+                        System.out.println("\tQuantidade de assentos: " + recursos[0][4]);
+                        System.out.println("\tSituação: " + recursos[0][5]);
                     }
 
                     System.out.print("Deseja modificar alguma informação? (s/n) ");
@@ -549,10 +548,10 @@ public class iSoccer {
                     System.out.print("Estádio " + recursos[1][1] + " encontrado. Deseja mais informações? (s/n) ");
                     aux = input.nextLine();
                     if (aux.equals("s") || aux.equals("S")) {
-                        System.out.println("Apelido: " + recursos[1][2]);
-                        System.out.println("Capacidade: " + recursos[1][3]);
-                        System.out.println("Quantidade de lanchonetes: " + recursos[1][4]);
-                        System.out.println("Quantidade de banheiros: " + recursos[1][5]);
+                        System.out.println("\tApelido: " + recursos[1][2]);
+                        System.out.println("\tCapacidade: " + recursos[1][3]);
+                        System.out.println("\tQuantidade de lanchonetes: " + recursos[1][4]);
+                        System.out.println("\tQuantidade de banheiros: " + recursos[1][5]);
                     }
 
                     System.out.print("Deseja modificar alguma informação? (s/n) ");
@@ -620,9 +619,9 @@ public class iSoccer {
                     System.out.print("Centro de treinamento " + recursos[2][1] + " encontrado. Deseja mais informações? (s/n) ");
                     aux = input.nextLine();
                     if (aux.equals("s") || aux.equals("S")) {
-                        System.out.println("Nome: " + recursos[2][1]);
-                        System.out.println("Quantidade de quartos: " + recursos[2][2]);
-                        System.out.println("Quantidade de campos: " + recursos[2][3]);
+                        System.out.println("\tNome: " + recursos[2][1]);
+                        System.out.println("\tQuantidade de quartos: " + recursos[2][2]);
+                        System.out.println("\tQuantidade de campos: " + recursos[2][3]);
                     }
 
                     System.out.print("Deseja modificar alguma informação? (s/n) ");
@@ -691,6 +690,7 @@ public class iSoccer {
                                 System.out.println("\tSalário: R$ " + funcionarios[i][6]);
                                 System.out.println("\tNúmero de telefone: " + funcionarios[i][7]);
                                 System.out.println("\tCondição: " + funcionarios[i][8] + "\n");
+                                flag = 1;
                                 break;
                             } else {
                                 System.out.println("Treinador:");
@@ -699,9 +699,14 @@ public class iSoccer {
                                 System.out.println("\tEmail: " + funcionarios[i][3]);
                                 System.out.println("\tSalário: R$ " + funcionarios[i][4]);
                                 System.out.println("\tNúmero de telefone: " + funcionarios[i][5]);
+                                flag = 1;
                                 break;
                             }
                         }
+                        if (flag == 0) {
+                            System.out.println("Funcionário não encontrado");
+                        }
+                        flag = 0;
                     }
                 } else {
                     System.out.println("Insira o CPF que deseja buscar: ");
@@ -720,10 +725,15 @@ public class iSoccer {
                                 System.out.println("\tEmail: " + funcionarios[i][3]);
                                 System.out.println("\tSalário: R$ " + funcionarios[i][4]);
                                 System.out.println("\tNúmero de telefone: " + funcionarios[i][5] + "\n");
+                                flag = 1;
                                 break;
                             }
                         }
                     }
+                    if (flag == 0) {
+                        System.out.println("Funcionário não encontrado");
+                    }
+                    flag = 0;
                 }
                 break;
             case 2:
@@ -739,11 +749,20 @@ public class iSoccer {
                         System.out.println("\tValor da contribuição: R$ " + socios[i][4]);
                         System.out.println("\tNúmero de telefone: " + socios[i][5]);
                         System.out.println("\tSituação: " + socios[i][6] + "");   
+                        flag = 1;
+                        break;
                     }
                 }
+                if (flag == 0) {
+                    System.out.println("Sócio não encontrado");
+                }
+                flag = 0;
+                break;
             default:
                 break;
         }
+        System.out.println("Pressioner ENTER para prosseguir.");
+        input.nextLine();
 
     }
 
@@ -792,7 +811,12 @@ public class iSoccer {
                             System.out.println("\tSalário: R$ " + funcionarios[i][6]);
                             System.out.println("\tNúmero de telefone: " + funcionarios[i][7]);
                             System.out.println("\tCondição: " + funcionarios[i][8] + "\n");
+                            flag = 1;
                         }
+                        if (flag == 0) {
+                            System.out.println("Não há jogadores cadastrados");
+                        }
+                        flag = 0;
                     }
                 } else if (mod == 2) {
                     for (int i = 0; i < func; i++) {
